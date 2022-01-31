@@ -1,24 +1,17 @@
 import express from "express";
 import { json } from "body-parser";
+import { currentUser } from "./routes/current-user";
+import { signin } from "./routes/signin";
+import { signup } from "./routes/signup";
+import { signout } from "./routes/signout";
 
 const app = express();
 app.use(json());
 
-app.get("/api/users/currentuser", (req, res) => {
-  res.send("CurrentUser");
-});
-
-app.post("/api/users/signup", (req, res) => {
-  res.send("signup");
-});
-
-app.post("/api/users/signin", (req, res) => {
-  res.send("SignIN");
-});
-
-app.post("/api/users/signout", (req, res) => {
-  res.send("user signout");
-});
+app.use(currentUser);
+app.use(signin);
+app.use(signup);
+app.use(signout);
 
 app.listen(3000, () => {
   console.log("Listening on Port:3000, Auth Server ");
