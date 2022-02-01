@@ -1,15 +1,29 @@
-import express from "express";
+import express, { Request, Response } from "express";
+import { body, validationResult } from "express-validator";
 
 const router = express.Router();
 
-router.get("/api/users/signup", (req, res) => {
-  const { email, password } = req.body;
+router.post(
+  "/api/users/signup",
+  [body("email").isEmail().withMessage("Email must be walid")],
+  [
+    body("password")
+      .trim()
+      .isLength({ min: 6, max: 20 })
+      .withMessage("Password must be walid & between 6-20 chatacters"),
+  ],
+  (req: Request, res: Response) => {
+    const { email, password } = req.body;
 
-  if (!email || typeof email !== "string") {
-    res.status(400).send("Provide a valid email & Pass");
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).send(errors.array());
+    }
+
+    console.log("Creating a user");
+    res.send("signup");
   }
-  console.log(email, password);
-  res.send("signup");
-});
+);
 
 export { router as signup };
