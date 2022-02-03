@@ -14,18 +14,18 @@ spec:
     spec:
       containers:
         - name: auth-mongo
-          image: stanislavdashkov/auth
+          image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-mongo
+  name: auth-mongo-srv
 spec:
   type: ClusterIP
   selector:
-    app: auth
+    app: auth-mongo
   ports:
-    - name: auth
+    - name: db
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 27017
+      targetPort: 27017
