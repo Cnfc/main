@@ -15,7 +15,7 @@ router.post(
       .withMessage("Password must be walid & between 6-20 chatacters"),
   ],
   // errorHandler,
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const { email, password } = req.body;
     console.log(email, password);
 
