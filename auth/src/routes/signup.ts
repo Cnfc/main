@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
+import os from "os";
 
 import { DatabaseConenctionError } from "../errors/database-connection-error";
 import { RequestValidationError } from "../errors/request-validation-error";
@@ -19,6 +20,12 @@ router.post(
   ],
   // errorHandler,
   async (req: Request, res: Response) => {
+    const platform = os.platform();
+    const version = os.version();
+
+    const settings = [platform, version];
+    console.log(settings);
+
     const { email, password } = req.body;
     console.log(email, password);
 
@@ -34,7 +41,7 @@ router.post(
       throw new BadRequestError("Email in use!");
     }
 
-    const user = User.build({ email, password });
+    const user = User.build({ email, password, version });
     await user.save();
 
     res.status(200).send(user);

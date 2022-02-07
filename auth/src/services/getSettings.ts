@@ -1,6 +1,6 @@
 import os from "os";
 
-export const async getSettings = () => {
+export const getSettings = () => {
   const hostname = os.hostname();
   const arch = os.arch();
   const cpus = os.cpus();
