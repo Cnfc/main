@@ -23,8 +23,8 @@ app.use(
 );
 
 app.use(currentUser);
-app.use(signin);
 app.use(signup);
+app.use(signin);
 app.use(signout);
 
 app.all("*", () => {

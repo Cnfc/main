@@ -3,6 +3,7 @@ import { body, validationResult } from "express-validator";
 import os from "os";
 import jwt from "jsonwebtoken";
 
+import { validateRequest } from "../middlewares/validateRequest";
 import { DatabaseConenctionError } from "../errors/database-connection-error";
 import { RequestValidationError } from "../errors/request-validation-error";
 import { BadRequestError } from "../errors/bad-request-error";
@@ -19,6 +20,7 @@ router.post(
       .isLength({ min: 6, max: 20 })
       .withMessage("Password must be walid & between 6-20 chatacters"),
   ],
+  validateRequest,
   // errorHandler,
   async (req: Request, res: Response) => {
     const platform = os.platform();
@@ -29,12 +31,6 @@ router.post(
 
     const { email, password } = req.body;
     console.log(email, password);
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
 
     const existingUser = await User.findOne({ email });
 
