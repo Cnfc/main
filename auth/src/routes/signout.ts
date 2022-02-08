@@ -2,8 +2,14 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/api/users/signout", (req, res) => {
-  res.send("signout");
+router.post("/api/users/signout", (req, res) => {
+  if (!req.session?.jwt) {
+    return res.send("You ara not auth");
+  }
+
+  req.session = null;
+
+  res.send({});
 });
 
 export { router as signout };
