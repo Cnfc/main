@@ -15,7 +15,6 @@ declare global {
 }
 
 export const currentUser = (
-  err: Error,
   req: Request,
   res: Response,
   next: NextFunction
@@ -29,10 +28,7 @@ export const currentUser = (
       req.session?.jwt,
       process.env.JWT_KEY_1!
     ) as UserPayload;
-
     req.currentUser = payload;
-
-    return next();
   } catch (error) {}
   next();
 };
