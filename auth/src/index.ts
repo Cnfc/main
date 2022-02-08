@@ -34,6 +34,10 @@ app.all("*", () => {
 app.use(errorHandler);
 
 const start = async () => {
+  if (!process.env.JWT_KEY_1) {
+    throw new Error("JWT_KEY_1 must be defined");
+  }
+
   const options = {};
 
   try {
