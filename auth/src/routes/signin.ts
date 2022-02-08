@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
 
-import { RequestValidationError } from "../errors/request-validation-error";
 import { validateRequest } from "../middlewares/validateRequest";
 
 const router = express.Router();
@@ -9,9 +8,8 @@ const router = express.Router();
 router.post(
   "/api/users/signin",
   [
-    body("email")
-      .isEmail()
-      .withMessage("Email must be walid")
+    body("email").isEmail().withMessage("Email must be walid"),
+    body("password")
       .trim()
       .notEmpty()
       .withMessage("You must supply a password"),
@@ -24,7 +22,7 @@ router.post(
 
     // Not Found User
 
-    // res.send("signin");
+    res.send("signin");
   }
 );
 
