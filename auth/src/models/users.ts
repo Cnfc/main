@@ -6,7 +6,7 @@ interface UserAttrs {
   email: string;
   password: string;
   // platform: string;
-  version: string;
+  version?: string;
 }
 
 // An interface that describes the properties that a User Model has
@@ -19,7 +19,7 @@ interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
   // platform: string;
-  version: string;
+  version?: string;
 }
 
 const userSchema = new mongoose.Schema(
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
     // },
     version: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   {
