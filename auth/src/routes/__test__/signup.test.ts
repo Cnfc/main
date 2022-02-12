@@ -40,7 +40,7 @@ it("set a cookie after successful signup", async () => {
     .post("/api/users/signup")
     .send({
       email: "test@test.com.com",
-      password: "pad",
+      password: "padpad",
     })
     .expect(201);
 

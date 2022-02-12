@@ -20,11 +20,11 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const platform = os.platform();
-    const version = os.version();
+    // const platform = os.platform();
+    // const version = os.version();
 
-    const settings = [platform, version];
-    console.log(settings);
+    // const settings = [platform, version];
+    // console.log(settings);
     const { email, password } = req.body;
     console.log(email, password);
 
@@ -34,7 +34,7 @@ router.post(
       throw new BadRequestError("Email in use!");
     }
 
-    const user = User.build({ email, password, version });
+    const user = User.build({ email, password });
     await user.save();
 
     // Generate JWT
