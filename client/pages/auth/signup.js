@@ -1,27 +1,25 @@
-import react, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import Router from "next/router";
+import useRequestHook from "../../hooks/useRequestHook";
 
 const signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { doRequest, errors } = useRequestHook({
+    url: "/api/users/signup",
+    method: "post",
+    body: { email, password },
+  });
 
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
-
-    const res = await axios.post("/api/users/signup", {
-      email,
-      password,
-    });
-
-    console.log(res.data);
+    doRequest();
   };
-  const onChange = () => {};
 
   return (
     <div>
       <h1>SignUp Form</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="">Email Address</label>
           <input
@@ -42,6 +40,9 @@ const signup = () => {
             placeholder="password"
           ></input>
         </div>
+
+        {errors}
+
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
