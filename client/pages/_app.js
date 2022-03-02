@@ -2,11 +2,12 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import axios from "axios";
 import buildClient from "../api/build-client";
+import Header from "../components/header";
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <h1>Header ! {currentUser.email}</h1>
+      <Header currentUser={currentUser}></Header>
       <Component {...pageProps}></Component>;
     </div>
   );
