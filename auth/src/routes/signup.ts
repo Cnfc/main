@@ -3,7 +3,7 @@ import { body } from "express-validator";
 import os from "os";
 import jwt from "jsonwebtoken";
 
-import { validateRequest } from "../middlewares/validateRequest";
+import { validateRequest } from "../middlewares/validate-request";
 import { BadRequestError } from "../errors/bad-request-error";
 import { User } from "../models/users";
 
