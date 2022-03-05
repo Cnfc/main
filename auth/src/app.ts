@@ -2,8 +2,7 @@ import express from "express";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 import { json } from "body-parser";
-import { errorHandler } from "@stticketcore/common";
-import { NotFoundError } from "@stticketcore/common";
+import { NotFoundError, errorHandler } from "@stticketcore/common";
 
 import { currentUser } from "./routes/current-user";
 import { signin } from "./routes/signin";

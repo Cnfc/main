@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
-import { currentUser } from "@stticketcore/common";
-import { requireAuth } from "@stticketcore/common";
+import { currentUser, requireAuth } from "@stticketcore/common";
 
 const router = express.Router();
 
