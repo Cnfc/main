@@ -28,7 +28,7 @@ const Header = ({ currentUser }) => {
           <ul className="nav d-flex align-items-center">
             {/* {currentUser ? "Sign out" : "Sign in/up"} */}
             <ol>{links}</ol>
-            <Link></Link>
+            {/* <Link></Link> */}
           </ul>
         </div>
       </nav>

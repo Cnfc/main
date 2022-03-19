@@ -2,7 +2,7 @@ import express from "express";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 import { json } from "body-parser";
-import { NotFoundError, errorHandler } from "@stticketcore/common";
+import { NotFoundError, errorHandler, currentUser } from "@stticketcore/common";
 
 import { createTicketRouter } from "./routes/new";
 
@@ -17,6 +17,10 @@ app.use(
   })
 );
 
+// Middlewares
+app.use(currentUser);
+
+// Routers
 app.use(createTicketRouter);
 
 app.all("*", () => {
