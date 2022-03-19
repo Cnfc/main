@@ -57,18 +57,4 @@ global.signin = () => {
   const base64 = Buffer.from(sessionJSON).toString("base64");
 
   return [`express:sess=${base64}`];
-
-  // const password = "password";
-
-  // const response = await request(app)
-  //   .post("/api/users/signup")
-  //   .send({
-  //     email,
-  //     password,
-  //   })
-  //   .expect(201);
-
-  // const cookie = response.get("Set-Cookie");
-
-  // return cookie;
 };

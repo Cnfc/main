@@ -11,7 +11,11 @@ it("If user signin ok", async () => {
 });
 
 it("Return a status 401 if user is signed in", async () => {
-  const res = await request(app).post("/api/tickets").send({});
+  const res = await request(app)
+    .post("/api/tickets")
+    .set("Cookie", global.signin())
+    .send({});
+
   expect(res.status).not.toEqual(401);
 });
 
