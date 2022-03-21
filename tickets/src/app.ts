@@ -5,6 +5,7 @@ import { json } from "body-parser";
 import { NotFoundError, errorHandler, currentUser } from "@stticketcore/common";
 
 import { createTicketRouter } from "./routes/new";
+import { showTicketRouter } from "./routes/show";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(currentUser);
 
 // Routers
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 app.all("*", () => {
   throw new NotFoundError();
