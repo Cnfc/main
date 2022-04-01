@@ -1,0 +1,38 @@
+.title {
+  text-transform: uppercase;
+  font-family: sans-serif;
+  letter-spacing: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: transparent;
+  color: red;
+}
+
+.title::before {
+  content: "Pure Css Text Typing Animation";
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: black;
+  /* transform: translate(-50%, -50%); */
+  overflow: hidden;
+  border-right: 1px solid #000;
+  animation: type 10s infinite;
+}
+
+@keyframes type {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
